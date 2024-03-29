@@ -26,7 +26,9 @@ will be updated soon
 3. Install dependencies
 
     > npm install
+
     > cd frontend
+
     > npm install
 
 4. Start the server
