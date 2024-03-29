@@ -2,6 +2,7 @@ import express, { response } from "express";
 import { PORT, mongoDB_URL } from "./config.js";
 import mongoose from "mongoose";
 import studentRoute from "./routes/studentsRoute.js";
+import cors from "cors";
 
 const app = express();
 
@@ -13,6 +14,18 @@ app.get("/", (req, res) => {
     console.log(req);
     return res.status(234).send("MERN Stack App");
 });
+
+// Middleware for handling CORS Policy
+// Option 1: Allow all origins with default of CORS
+// app.use(cors());
+// Option 2: Allow custom origins
+app.use(
+    cors({
+        origin: "http://localhost:" + { PORT },
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type"],
+    })
+);
 
 // Routes
 app.use("/students", studentRoute);
